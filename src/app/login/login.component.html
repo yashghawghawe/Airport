@@ -1,0 +1,61 @@
+<div class="container">
+    <p style="color: rgba(4, 4, 19, 0.842);margin-left: 0px;">{{date | date:'fullDate' | uppercase}}</p>
+    <marquee style="color: rgba(42, 42, 238, 0.842);">Welcome To Apex Airport!!!</marquee>
+    <div class="container-login">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)" action="" class="form-group">
+            <h2>Please login</h2>
+            <div class="form-group">
+                <div class="col-12 input-group mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Email Address"
+                        [(ngModel)]="email" #Email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        [ngClass]="{'is-invalid': Email.touched && Email.invalid}" required email /> <br />
+                    <div *ngIf="Email.touched && Email.invalid" class="invalid-feedback">
+                        <div *ngIf="Email.errors.required">Email is required</div>
+                        <div *ngIf="Email.errors.email">Please Enter a valid Email Address</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-12 input-group mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required
+                        [(ngModel)]="password" #Password="ngModel"
+                        [ngClass]="{'is-invalid': Password.touched && Password.invalid}"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" minlength="6"
+                        maxlength="15" /> <br />
+                    <div *ngIf="Password.touched && Password.invalid" class="invalid-feedback">
+                        <div *ngIf="Password.errors.required">Password is required</div>
+                        <div *ngIf="Password.errors.minlength">Password must be at least of 6 characters</div>
+                        <div *ngIf="Password.errors.maxlength || Password.invalid">Password must be of 14 characters at
+                            most</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--div class="col-12 input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text bg-dark" for="role" style="color: gold;">Role</label>
+                </div>
+                <select class="custom-select" name="Role" id="role" #Role="ngModel" [ngModel]="role">
+                    <option value="M">Manager</option>
+                    <option value="A">Admin</option>
+                </select>
+            </div-->
+
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"
+                    class="form-control-inline">
+                Remember me
+            </label>
+            <input type="submit" value="Login" [disabled]="!form.valid" class="btn btn-primary btn-md btn-block">
+            <br />
+            <p>Don`t have an account? <a routerLink="/register">Sign Up</a></p>
+            <div class="form-group">
+                <div class="alert alert-danger" role="alert" *ngIf="form.submitted && isLoginFailed">
+                    Login failed: Please enter correct username and password
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+</div>

@@ -1,0 +1,35 @@
+<nav aria-label="breadcrumb bg-dark">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLinkAxtive="active" routerLink="/admin">Admin Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Managers</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <table class="table table-warning table-stripped table-bordered table-hover" width="70%" style="border-radius: 5px;">
+        <thead class="bg-dark" style="color: white;">
+            <tr>
+                <th scope="col">SR.NO</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users;let i=index">
+                <th>{{user.id}}</th>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.contactNo}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user)">Reject</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-md-8" *ngIf="deleted">
+        <P>{{message}}</P>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="container-sm" style="width: 50%;">
+    <h4 style="font-weight: bold">Update Hangar Details</h4>
+    <hr>
+    <form #formu="ngForm" (ngSubmit)="update(formu)">
+        <div class="col-xs-12 form-group">
+            <div id="inputgroup" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-dark" id="hangarid" style="color: gold;">Hangar Number
+                    </span>
+                </div>
+                <input type="text" name="hangarNumber" class="form-control" #hangarNum="ngModel"
+                    [ngClass]="{ 'is-invalid': hangarNum.touched && hangarNum.invalid }" required
+                    [(ngModel)]="hangarNumber"><br />
+                <div *ngIf="hangarNum.touched && hangarNum.invalid" class="invalid-feedback">
+                    <div *ngIf="hangarNum.errors.required">Hangar Number is required</div>
+                </div>
+            </div>
+           
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text bg-dark" for="type" style="color: gold;">Hangar
+                        Status</label>
+                </div>
+                <select class="custom-select" name="hangarStatus" id="type" required [(ngModel)]="hangarStatus"
+                    #HangarStatus="ngModel">
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
+                <div *ngIf="HangarStatus.touched && HangarStatus.invalid" class="invalid-feedback">
+                    <div *ngIf="HangarStatus.errors.required">Hangar Status is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="submit" value="Update Hangar Details" class="btn btn-block bg-dark"
+                    [disabled]="!formu.valid" style="color: gold;">
+                <hr />
+            </div>
+            <div class="input-group mb-3" style="text-align: center;">
+                <button type="reset" class="btn btn-md bg-dark" style="color: gold;" (click)="Reset()">Reset</button>
+                <div class="divider"></div>
+                <button type="button" class="btn btn-md bg-dark" style="color: gold;" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <p style="color: green;">Hangar Updated SuccessFully!!!!</p>
+</div>

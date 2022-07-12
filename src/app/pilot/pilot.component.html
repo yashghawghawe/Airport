@@ -1,0 +1,112 @@
+<nav aria-label="breadcrumb bg-dark">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLinkAxtive="active" routerLink="/admin">Admin Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pilots</li>
+    </ol>
+</nav>
+<div class="container" style="width: 70%;">
+    <div class="accordian" id="collapse" style="text-align: center;">
+        <div class="card">
+            <div class="card-header" id="firstOpp">
+                <h2 class="mb-0">
+                    <button class="btn btn-block btn-dark btn-md" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Add Pilot</button>
+                </h2>
+            </div>
+            <div class="card-header" id="secondOpp">
+                <h2 class="mb-0">
+                    <button class="btn btn-block btn-dark btn-md" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">List Of
+                        Pilots</button>
+                </h2>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#collapse">
+                <div class="container-sm" style="width: 50%;">
+                    <h4 style="font-weight: bold">Add Pilot Details</h4>
+                    <hr>
+                    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+                        <div class="col-xs-12 form-group">
+                            <div id="inputgroup" class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-dark" id="pilotName" style="color: gold;">Pilot
+                                        Name</span>
+                                </div>
+                                <input type="text" name="pilotName" placeholder="Enter Pilot Name" class="form-control"
+                                    #PilotName="ngModel"
+                                    [ngClass]="{ 'is-invalid': PilotName.touched && PilotName.invalid }" required
+                                    [(ngModel)]="pilotName"><br />
+                                <div *ngIf="PilotName.touched && PilotName.invalid" class="invalid-feedback">
+                                    <div *ngIf="PilotName.errors.required">Pilot Name is required</div>
+                                </div>
+                            </div>
+                            <div id="inputgroup" class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-dark" id="companyid" style="color: gold;">Company
+                                        ID
+                                    </span>
+                                </div>
+                                <input type="text" name="companyID" placeholder="Enter Company ID Name"
+                                    class="form-control" #companyID="ngModel"
+                                    [ngClass]="{ 'is-invalid': companyID.touched && companyID.invalid }" required
+                                    [(ngModel)]="companyid"><br />
+                                <div *ngIf="companyID.touched && companyID.invalid" class="invalid-feedback">
+                                    <div *ngIf="companyID.errors.required">Company ID is required</div>
+                                </div>
+                            </div>
+                            <div id="inputgroup" class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-dark" name="Email" id="email"
+                                        style="color: gold;">Email</span>
+                                </div>
+                                <input type="email" placeholder="email" #username class="form-control" name="email"
+                                    [(ngModel)]="email" #Email="ngModel"
+                                    [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }" email required> <br />
+                                <div *ngIf="Email.touched && Email.invalid" class="invalid-feedback">
+                                    <div *ngIf="Email.errors.required">Email is required</div>
+                                    <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <input type="submit" value="Add Pilot" class="btn btn-block bg-dark"
+                                    [disabled]="!form.valid" style="color: gold;">&nbsp;&nbsp;&nbsp;
+                                <hr />
+                            </div>
+                        </div>
+                    </form>
+                    <p *ngIf="added" style="color: green;">Pilot Added SuccessFully!!!!</p>
+                </div>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#collapse">
+                <div class="container table-responsive">
+                    <table class="table table-warning table-stripped table-hover table-bordered">
+                        <thead>
+                            <tr class="table table-light">
+                                <th scope="col">Company ID</th>
+                                <th scope="col">Pilot Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Update Details</th>
+                                <th scope="col">Delete pilot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pilot of pilots;let i=index">
+                                <td>{{pilot.companyID}}</td>
+                                <td>{{pilot.pilotName}}</td>
+                                <td>{{pilot.email}}</td>
+                                <td><button type="button" class="btn btn-success btn-sm"
+                                        (click)="editDetails(i)">edit</button>
+                                </td>
+                                <td><button type="button" class="btn btn-danger btn-sm"
+                                        (click)="deletePilot(pilot)">delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-header" *ngIf="editMode">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

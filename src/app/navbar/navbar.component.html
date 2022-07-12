@@ -1,0 +1,74 @@
+<app-banner></app-banner>
+<hr>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark badge-primary" id="nav" style="border-radius: 5px;">
+  <a class="navbar-brand">
+    Apex Airport
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar" style="align-content: center">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a routerLinkActive="active" [routerLink]="['/home']" class="nav-link">
+          Home
+        </a>
+      </li>
+      <!--li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/addPlane" style="cursor: pointer;">Plane Section</a>
+          <a class="dropdown-item" routerLink="/addPilot" style="cursor: pointer;">Pilot Section</a>
+          <a class="dropdown-item" routerLink="/addHangar" style="cursor: pointer;">Hangar Section</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/viewManagers" style="cursor: pointer;">View Manager</a>
+        </div>
+      </li-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manager
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#" style="cursor: pointer;">Allot Hangars</a>
+          <a class="dropdown-item" href="#" style="cursor: pointer;">Allot Pilots</a>
+          <a class="dropdown-item" href="#" style="cursor: pointer;">View Hangar Status</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a routerLinkActive="active" [routerLink]="['/about']" class="nav-link">
+          About
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLinkActive="active" [routerLink]="['/contact']" class="nav-link">
+          Conatct Us
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a routerLink="/register" role="button" style="color: black;" class="btn btn-warning" routerLink="register">Sign Up</a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item">
+        <a routerLink="/login" style="color: black;" class="btn btn-warning" (click)="login()">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link bg-warning" style="color: black;" class="btn btn-warning"  routerLink="/profile" (click)="checked()">{{ username }}</a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item">
+        <a href class="nav-link" style="color: black;" class="btn btn-warning" routerLink="/" (click)="logout()">logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>

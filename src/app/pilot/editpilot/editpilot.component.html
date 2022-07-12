@@ -1,0 +1,56 @@
+<div class="container-sm" *ngIf="editMode" style="width: auto;">
+    <h4 style="font-weight: bold">Update Pilot Details</h4>
+    <hr>
+    <form #form="ngForm" (ngSubmit)="updatePilot(form)">
+        <div class="col-xs-12 form-group">
+            <div id="inputgroup" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-dark" id="companyid" style="color: gold;">Company
+                        ID
+                    </span>
+                </div>
+                <input type="text" name="companyID" placeholder="Enter Company ID Name"
+                    class="form-control" #companyID="ngModel"
+                    [ngClass]="{ 'is-invalid': companyID.touched && companyID.invalid }" required
+                    [(ngModel)]="companyid"><br />
+                <div *ngIf="companyID.touched && companyID.invalid" class="invalid-feedback">
+                    <div *ngIf="companyID.errors.required">Company ID is required</div>
+                </div>
+            </div>
+            <div id="inputgroup" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-dark" id="pilotName" style="color: gold;">Pilot
+                        Name</span>
+                </div>
+                <input type="text" name="pilotName" placeholder="Enter Pilot Name" class="form-control"
+                    #PilotName="ngModel"
+                    [ngClass]="{ 'is-invalid': PilotName.touched && PilotName.invalid }" required
+                    [(ngModel)]="pilotName"><br />
+            </div>
+            <div id="inputgroup" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-dark" name="Email" id="email"
+                        style="color: gold;">Email</span>
+                </div>
+                <input type="email" placeholder="email" #username class="form-control" name="email"
+                    [(ngModel)]="email" #Email="ngModel"
+                    [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }" email> <br />
+                <div *ngIf="Email.touched && Email.invalid" class="invalid-feedback">
+                    <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="submit" value="Update Details" [disabled]="!form.valid && !form.dirty" class="btn btn-block bg-dark"
+                    style="color: gold;">&nbsp;&nbsp;&nbsp;
+                <hr />
+            </div>
+            <div class="input-group mb-3">
+                <button type="reset" class="btn btn-md bg-dark" style="color: gold;" (click)="Reset()">Reset</button>
+                <div class="divider"></div>
+                <button type="button" class="btn btn-md bg-dark" style="color: gold;" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <p *ngIf="added" style="color: green;">Pilot Updated SuccessFully!!!!</p>
+</div>

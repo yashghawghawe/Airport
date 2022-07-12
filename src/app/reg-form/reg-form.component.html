@@ -1,0 +1,139 @@
+<div class="container-sm" style="width: 70%;">
+    <div class="background">
+        <h4 style="font-weight: bold">Please Register Yourself !!</h4>
+        <hr>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div class="col-xs-12 form-group">
+                <div id="inputgroup" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-dark" id="firtsname" style="color: gold;">First Name</span>
+                    </div>
+                    <input type="text" name="firstname" placeholder="First Name" #fname class="form-control"
+                        #firstName="ngModel" [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }"
+                        required [(ngModel)]="firstname" minlength="1" maxlength="20"><br />
+                    <div *ngIf="firstName.touched && firstName.invalid" class="invalid-feedback">
+                        <div *ngIf="firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div id="inputgroup" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-dark" id="lastname" style="color: gold;">Last Name</span>
+                    </div>
+                    <input type="text" name="lastname" placeholder="Last Name" #lname class="form-control"
+                        #lastName="ngModel" [ngClass]="{ 'is-invalid': lastName.touched && lastName.invalid }" required
+                        [(ngModel)]="lastname" minlength="1" maxlength="30"><br>
+                    <div *ngIf="lastName.touched && lastName.invalid" class="invalid-feedback">
+                        <div *ngIf="lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div id="inputgroup" class="input-group mb-3">
+                    <input type="email" placeholder="email" #username class="form-control" name="username"
+                        [(ngModel)]="email" #Email="ngModel"
+                        [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }" email required> <br />
+                    <div *ngIf="Email.touched && Email.invalid" class="invalid-feedback">
+                        <div *ngIf="Email.errors.required">Email is required</div>
+                        <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+                    </div>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-dark" name="Email" id="email"
+                            style="color: gold;">Username</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-dark" for="role" style="color: gold;">Role</label>
+                    </div>
+                    <select class="custom-select" name="userRole" id="role" #Role="ngModel" required [ngModel]="role">
+                        <option value="M">Manager</option>
+                        <option value="A">Admin</option>
+                    </select>
+                    <span class="help-block" style="font-size: smaller;color: red;"
+                        *ngIf="Role.invalid && Role.touched">Please Select A Role!</span>
+                    &nbsp;&nbsp;
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-dark" for="gender" style="color: gold;">Gender</label>
+                    </div>
+                    <select class="custom-select" name="gender" id="gender" #Gender="ngModel" required
+                        [ngModel]="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <span class="help-block" style="font-size: smaller; color: red;"
+                        *ngIf="Gender.invalid && Gender.touched">This Field is mandatory!</span>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-dark" style="color: gold;">Age</label>
+                    </div>
+                    <input type="number" name="age" class="form-control" #dob placeholder="Enter Age" required
+                        [(ngModel)]="age">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text bg-dark" style="color: gold;">Password</label>
+                    </div>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required
+                        [(ngModel)]="password" #Password="ngModel"
+                        [ngClass]="{'is-invalid': Password.touched && Password.invalid}"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" minlength="6"
+                        maxlength="15" />
+                    <br />
+                    <div *ngIf="Password.touched && Password.invalid" class="invalid-feedback">
+                        <div *ngIf="Password.errors.required">Password is required</div>
+                        <div *ngIf="Password.errors.minlength">Password must be at least of 6 characters</div>
+                        <div *ngIf="Password.errors.maxlength || Password.invalid">Password must be of 14 characters at
+                            most
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-dark" style="color: gold;">Contact No</span>
+                        </div>
+                        <input class="form-control" type="number" name="contactNo" placeholder="Contact No"
+                            #Number="ngModel" minlength="4" maxlength="30" [(ngModel)]="number">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Sports</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">Art</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">Science</label>
+                      </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" id="terms" name="terms"
+                                aria-label="Checkbox for following text input" required ngModel>
+                        </div>
+                    </div>
+                    <label class="input-group-text bg-dark" for="terms" style="color: gold;">please agree to terms and
+                        conditions
+                        for
+                        registering.</label>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="submit" value="Register" class="btn bg-dark btn-block" [disabled]="!form.valid"
+                        style="color: gold;">&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="alert alert-warning" *ngIf="form.submitted && isSignUpFailed">
+                Signup failed!<br />{{ errorMessage }}
+            </div>
+        </form>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            Your registration is successful!
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="container-sm" *ngIf="editMode" style="width: auto;">
+    <h4 style="font-weight: bold">Update Plane Details</h4>
+    <hr>
+    <form #formu="ngForm" (ngSubmit)="onUpdate(formu)">
+        <div class="col-xs-12 form-group">
+            <div id="inputgroup" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-dark" id="planeName" style="color: gold;">Plane
+                        Name</span>
+                </div>
+                <input type="text" name="planeName" placeholder="Enter Plane Name" #pname class="form-control"
+                    #PlaneName="ngModel" [ngClass]="{ 'is-invalid': PlaneName.touched && PlaneName.invalid }" required
+                    [(ngModel)]="planeName"><br />
+                <div *ngIf="PlaneName.touched && PlaneName.invalid" class="invalid-feedback">
+                    <div *ngIf="PlaneName.errors.required">Plane Name is required</div>
+                </div>
+            </div>
+            <div id="inputgroup" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-dark" id="ownername" style="color: gold;">Owner
+                        Name</span>
+                </div>
+                <input type="text" name="ownerName" placeholder="Enter Owner Name" #lname class="form-control"
+                    #OwnerName="ngModel" [ngClass]="{ 'is-invalid': OwnerName.touched && OwnerName.invalid }" required
+                    [(ngModel)]="ownerName"><br>
+                <div *ngIf="OwnerName.touched && OwnerName.invalid" class="invalid-feedback">
+                    <div *ngIf="OwnerName.errors.required">Owner Name is required</div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text bg-dark" for="type" style="color: gold;">Plane
+                        Type</label>
+                </div>
+                <select class="custom-select" name="planeType" id="type" #type required [(ngModel)]="planeType">
+                    <option value="Passesnger">Passenger</option>
+                    <option value="Cargo">Cargo</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="submit" value="Update Plane Details" class="btn btn-block bg-dark"
+                    [disabled]="!formu.valid" style="color: gold;">
+                <hr />
+            </div>
+            <div class="input-group mb-3">
+                <button type="reset" class="btn btn-md bg-dark" style="color: gold;" (click)="Reset()">Reset</button>
+                <div class="divider"></div>
+                <button type="button" class="btn btn-md bg-dark" style="color: gold;" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <p *ngIf="updated" style="color: green;">Plane Details Updated SuccessFully!!!!</p>
+</div>
